@@ -154,7 +154,7 @@ def GetGreatestYVert(vertex_list):
     return greatVert
 
 def BevelVert(bm, vertex_list, bevelAmount):
-    bmesh.ops.bevel(bm, geom = vertex_list, offset = bevelAmount, segments = 1, vertex_only = True, clamp_overlap = True)
+    bmesh.ops.bevel(bm, geom = vertex_list, offset = bevelAmount, segments = 1, affect = 'VERTICES', clamp_overlap = True)
 
 def GetInsetIndividualFaces(bm, insetAmount, discard_threshold = 0, rel = False):
     

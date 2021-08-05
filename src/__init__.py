@@ -30,22 +30,22 @@ from .Sci_fi_panels import *
 
 class Addon_Properties(bpy.types.PropertyGroup):
 
-    a_insetAmount = bpy.props.FloatProperty(name="Inset amount", default=0.03, min =0.01, max = 0.3, description="Distance to be inset by, generally smaller = better")
-    a_insetDiscard = bpy.props.FloatProperty(name="Inset discard threshhold", default=0, min =0, max = 0.3, description= "Discards faces for inseting and extruding if the area falls below value") 
-    a_extrudeAmount = bpy.props.FloatProperty(name="Extrude length", default= 0.1, min =0, max = 0.3, description= "Extruded length of inseted faces")
+    a_insetAmount: bpy.props.FloatProperty(name="Inset amount", default=0.03, min =0.01, max = 0.3, description="Distance to be inset by, generally smaller = better")
+    a_insetDiscard: bpy.props.FloatProperty(name="Inset discard threshhold", default=0, min =0, max = 0.3, description= "Discards faces for inseting and extruding if the area falls below value") 
+    a_extrudeAmount: bpy.props.FloatProperty(name="Extrude length", default= 0.1, min =0, max = 0.3, description= "Extruded length of inseted faces")
     
-    a_iterations =  bpy.props.IntProperty(name="Iterations", default=3, min = 0, max = 10, description="Number of attempts to cut the mesh")
-    a_areaKill = bpy.props.FloatProperty(name="AreaKill threshhold", default= 0.1, min = 0, max = 0.3, description= "Attempts to merge faces together if the area falls below value")
-    a_longedgeBias = bpy.props.FloatProperty(name="Long edge bias", default= 0.75, min = 0, max = 1, description= "Favours subdividing longer edges")
+    a_iterations:  bpy.props.IntProperty(name="Iterations", default=3, min = 0, max = 10, description="Number of attempts to cut the mesh")
+    a_areaKill: bpy.props.FloatProperty(name="AreaKill threshhold", default= 0.1, min = 0, max = 0.3, description= "Attempts to merge faces together if the area falls below value")
+    a_longedgeBias: bpy.props.FloatProperty(name="Long edge bias", default= 0.75, min = 0, max = 1, description= "Favours subdividing longer edges")
 
-    s_insetAmount = bpy.props.FloatProperty(name="Inset amount", default=0.03, min =0.01, max = 0.3, description="Distance to be inset by, generally smaller = better")
-    s_insetDiscard = bpy.props.FloatProperty(name="Inset discard threshhold", default=0, min =0, max = 0.3, description= "Discards faces for inseting and extruding if the area falls below value")
-    s_extrudeAmount = bpy.props.FloatProperty(name="Extrude length", default= 0.1, min =0, max = 0.3, description= "Extruded length of inseted faces")
+    s_insetAmount: bpy.props.FloatProperty(name="Inset amount", default=0.03, min =0.01, max = 0.3, description="Distance to be inset by, generally smaller = better")
+    s_insetDiscard: bpy.props.FloatProperty(name="Inset discard threshhold", default=0, min =0, max = 0.3, description= "Discards faces for inseting and extruding if the area falls below value")
+    s_extrudeAmount: bpy.props.FloatProperty(name="Extrude length", default= 0.1, min =0, max = 0.3, description= "Extruded length of inseted faces")
 
-    s_bevelAmount_min = bpy.props.FloatProperty(name="Bevel min", default= 0.1, min = 0, max = 0.3, description="Beveled length of non-boundary vertices")
-    s_bevelAmount_max = bpy.props.FloatProperty(name="Bevel max", default= 0.15, min = 0, max = 0.3, description="Beveled length of non-boundary vertices")
-    s_maxX = bpy.props.IntProperty(name="Max X cuts", default=3, min = 1, max = 10, description="The max number of cuts possible. Ie random number between 1 and max")
-    s_maxY = bpy.props.IntProperty(name="Max Y cuts", default=3, min = 1, max = 10, description="The max number of cuts possible. Ie random number between 1 and max")
+    s_bevelAmount_min: bpy.props.FloatProperty(name="Bevel min", default= 0.1, min = 0, max = 0.3, description="Beveled length of non-boundary vertices")
+    s_bevelAmount_max: bpy.props.FloatProperty(name="Bevel max", default= 0.15, min = 0, max = 0.3, description="Beveled length of non-boundary vertices")
+    s_maxX: bpy.props.IntProperty(name="Max X cuts", default=3, min = 1, max = 10, description="The max number of cuts possible. Ie random number between 1 and max")
+    s_maxY: bpy.props.IntProperty(name="Max Y cuts", default=3, min = 1, max = 10, description="The max number of cuts possible. Ie random number between 1 and max")
 
 
 class OBJECT_OT_Square(bpy.types.Operator):
@@ -117,20 +117,22 @@ class TEST_PT_PANEL(bpy.types.Panel):
         # You can set 
 
 
+classes = [
+    OBJECT_OT_Square,
+    OBJECT_OT_Abstract,
+    TEST_PT_PANEL,
+    Addon_Properties,
+
+
+]
+
 def register():
-    bpy.utils.register_class(OBJECT_OT_Square)
-    bpy.utils.register_class(OBJECT_OT_Abstract)
-    bpy.utils.register_class(TEST_PT_PANEL)    
-    bpy.utils.register_class(Addon_Properties)
     
+    for cls in classes:
+        bpy.utils.register_class(cls)
     bpy.types.Scene.addon_Properties = bpy.props.PointerProperty(type=Addon_Properties)
-    #auto_load.register()
-    
 
 def unregister():
-    bpy.utils.unregister_class(OBJECT_OT_Square)
-    bpy.utils.unregister_class(OBJECT_OT_Abstract)
-    bpy.utils.unregister_class(TEST_PT_PANEL)
-    bpy.utils.unregister_class(Addon_Properties)
+    for cls in classes:
+        bpy.utils.unregister_class(cls)
     del bpy.types.Scene.addon_Properties
-    #auto_load.unregister()
