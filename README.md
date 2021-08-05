@@ -1,9 +1,9 @@
 # Sci-fi-Panels
-A procedural Sci-fi panel generator for blender 2.8
+A procedural Sci-fi panel generator for blender 2.8+
 
 **Please Note** </br>
-I'm an no longer working on this, and thus is no longer supported </br>
-If you'd like a last packaged version that you can load as an add on in blender 2.8 you can find that here: https://gum.co/TCnk 
+I am not the original creator of the addon, just the maintainer. All credit for the idea and parts of the source code goes to Declan Richard Porter</br>
+If you want to support the original creator you can find them here: https://gum.co/TCnk 
 
 ![add3](https://user-images.githubusercontent.com/34284628/122260952-25f2f480-ced4-11eb-989a-9201ee184cc8.PNG)
 ![add1](https://user-images.githubusercontent.com/34284628/122260858-0b208000-ced4-11eb-9a1b-0dbeadf60015.PNG)
@@ -34,9 +34,9 @@ There are 2 algorithms for generating the panels which I call, Square and Abstra
 
 **Tips**
 <ul>
-  <li> Vertex count plays a vital role. Keeping the vertex count low and the distance between vertices high will generate the best  results. This is because if vertices are too close to one another the generator avoid cutting there. </li>
+  <li> Vertex count plays a vital role. Keeping the vertex count low and the distance between vertices high will generate the best  results. This is because if vertices are too close to one another the generator will avoid cutting there. </li>
   <li> If the results are not to your liking you can always undo the change and try again. This is a common occurrence as there is a great deal of randomness when generating. </li>
   <li> Hovering over each setting available will give you a short description on what it does. </li>
-  <li> The addon works best with planes. The planes can any shape and size as well as be curved. </li>
+  <li> The addon works best with planes. The planes can be any shape and size as well as curved. </li>
 </ul>
 

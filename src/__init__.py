@@ -13,10 +13,10 @@
 import bpy
 bl_info = {
     "name" : "Sci-fi_Panel_Generator",
-    "author" : "Declan Richard Porter",
+    "author" : "Joshua Blömer, Declan Richard Porter",
     "description" : "Generates quick sci-fi panels",
-    "blender" : (2, 80, 0),
-    "version" : (1, 0, 0),
+    "blender" : (2, 90, 0),
+    "version" : (1, 1, 0),
     "location" : "View3D > Add > Mesh",
     "wiki_url": "",
     "tracker_url": "",
@@ -122,8 +122,6 @@ classes = [
     OBJECT_OT_Abstract,
     TEST_PT_PANEL,
     Addon_Properties,
-
-
 ]
 
 def register():
