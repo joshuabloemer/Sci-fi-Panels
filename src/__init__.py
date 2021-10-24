@@ -18,9 +18,6 @@ bl_info = {
     "blender" : (2, 90, 0),
     "version" : (1, 1, 1),
     "location" : "View3D > Add > Mesh",
-    "wiki_url": "",
-    "tracker_url": "",
-    "warning" : "",
     "support": "COMMUNITY",
     "category" : "Add Mesh"
 }
@@ -48,7 +45,7 @@ class Addon_Properties(bpy.types.PropertyGroup):
     s_maxY: bpy.props.IntProperty(name="Max Y cuts", default=3, min = 1, max = 10, description="The max number of cuts possible. Ie random number between 1 and max")
 
 
-class OBJECT_OT_Square(bpy.types.Operator):
+class SCIFIPANELS_OT_Square(bpy.types.Operator):
     bl_idname = "object.square"
     bl_label = "Generate square"
     bl_options = {'REGISTER', 'UNDO'}
@@ -59,7 +56,7 @@ class OBJECT_OT_Square(bpy.types.Operator):
         SqaureAlogrithm(1,scene.s_maxX, 1, scene.s_maxY, scene.s_insetAmount, scene.s_insetDiscard, scene.s_bevelAmount_min, scene.s_bevelAmount_max, scene.s_extrudeAmount)
         return {'FINISHED'}
 
-class OBJECT_OT_Abstract(bpy.types.Operator):
+class SCIFIPANELS_OT_Abstract(bpy.types.Operator):
     bl_idname = "object.abstract"
     bl_label = "Generate abstract"
     bl_options = {'REGISTER', 'UNDO'}
@@ -70,9 +67,9 @@ class OBJECT_OT_Abstract(bpy.types.Operator):
         AbstractAlgorithm(scene.a_iterations, scene.a_areaKill, scene.a_insetAmount, scene.a_insetDiscard, scene.a_extrudeAmount, scene.a_longedgeBias)
         return {'FINISHED'}
 
-class TEST_PT_PANEL(bpy.types.Panel):
-    bl_idname = "object_PT_Panel"
-    bl_label = "Panels"
+class SCIFIPANELS_PT_panel(bpy.types.Panel):
+    bl_idname = "OBJECT_PT_Panel"
+    bl_label = "Sci-Fi Panels"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
     bl_category = "Panel Generator"
@@ -113,9 +110,9 @@ class TEST_PT_PANEL(bpy.types.Panel):
 
 
 classes = [
-    OBJECT_OT_Square,
-    OBJECT_OT_Abstract,
-    TEST_PT_PANEL,
+    SCIFIPANELS_OT_Square,
+    SCIFIPANELS_OT_Abstract,
+    SCIFIPANELS_PT_panel,
     Addon_Properties,
 ]
 
