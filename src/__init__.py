@@ -16,7 +16,7 @@ bl_info = {
     "author" : "Joshua Blömer, Declan Richard Porter",
     "description" : "Generates quick sci-fi panels",
     "blender" : (2, 90, 0),
-    "version" : (1, 1, 0),
+    "version" : (1, 1, 1),
     "location" : "View3D > Add > Mesh",
     "wiki_url": "",
     "tracker_url": "",
@@ -83,38 +83,33 @@ class TEST_PT_PANEL(bpy.types.Panel):
         return (context.object is not None)
 
     def draw(self, context):
-        # You can set the property values that should be used when the user
-        # presses the button in the UI.
-    
         layout = self.layout
         scn = context.scene.addon_Properties
 
-        s_box = layout.box()
-        s_box.label(text="Square Algorithm")
-        s_op = s_box.operator("object.square")
-        s_box.prop(scn, 's_insetAmount')
-        s_box.prop(scn, 's_insetDiscard')
-        s_box.prop(scn, 's_extrudeAmount')
-        s_box.prop(scn, 's_maxX')
-        s_box.prop(scn, 's_maxY')
-        s_box.prop(scn, 's_bevelAmount_min')
-        s_box.prop(scn, 's_bevelAmount_max')
+        if context.active_object.mode == 'OBJECT':
+                
+            s_box = layout.box()
+            s_box.label(text="Square Algorithm")
+            s_op = s_box.operator("object.square")
+            s_box.prop(scn, 's_insetAmount')
+            s_box.prop(scn, 's_insetDiscard')
+            s_box.prop(scn, 's_extrudeAmount')
+            s_box.prop(scn, 's_maxX')
+            s_box.prop(scn, 's_maxY')
+            s_box.prop(scn, 's_bevelAmount_min')
+            s_box.prop(scn, 's_bevelAmount_max')
 
-        a_box = layout.box()
-        a_box.label(text="Abstract Algorithm")
-        a_op = a_box.operator("object.abstract")
-        a_box.prop(scn, "a_insetAmount")
-        a_box.prop(scn, "a_insetDiscard")
-        a_box.prop(scn, "a_extrudeAmount")
-        a_box.prop(scn, "a_iterations")
-        a_box.prop(scn, "a_areaKill")
-        a_box.prop(scn, "a_longedgeBias")
-
-        #props = self.layout.operator('object.property_example')
-        #props.my_bool = True
-        #props.my_string = "Shouldn't that be 47?"
-
-        # You can set 
+            a_box = layout.box()
+            a_box.label(text="Abstract Algorithm")
+            a_op = a_box.operator("object.abstract")
+            a_box.prop(scn, "a_insetAmount")
+            a_box.prop(scn, "a_insetDiscard")
+            a_box.prop(scn, "a_extrudeAmount")
+            a_box.prop(scn, "a_iterations")
+            a_box.prop(scn, "a_areaKill")
+            a_box.prop(scn, "a_longedgeBias")
+        else:
+            layout.label(text='Please Switch to Object Mode')
 
 
 classes = [
